@@ -305,7 +305,8 @@ body{background-color:#0f172a;}
 button{border-radius:8px !important;}
 """
 
-with gr.Blocks(css=css, title="AI Tuberculosis Monitoring System") as demo:
+# ✅ FIXED (removed title ONLY)
+with gr.Blocks(css=css) as demo:
 
     gr.HTML("""
     <div class='main-title'>AI-Driven Tuberculosis Monitoring System</div>
@@ -382,4 +383,10 @@ with gr.Blocks(css=css, title="AI Tuberculosis Monitoring System") as demo:
                 outputs=insight_output
             )
 
-demo.launch(server_name="127.0.0.1", server_port=7860, share=True)
+# ✅ FINAL FIX (Render)
+port = int(os.environ.get("PORT", 10000))
+
+demo.launch(
+    server_name="0.0.0.0",
+    server_port=port
+)
